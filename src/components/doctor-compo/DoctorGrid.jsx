@@ -18,7 +18,7 @@ const initialDoctors = [
     cccd: 'số cccd',
     department: 'Tai, mũi, họng',
     qualifications: 'Nhi',
-    available: true,
+    available: false,
     time_off: '5PM',
   },
   { 
@@ -32,7 +32,7 @@ const initialDoctors = [
     cccd: 'số cccd',
     department: 'Tai, mũi, họng',
     qualifications: 'Nhi',
-    available: true,
+    available: false,
     time_off: '5PM',
   },
   { 
@@ -209,7 +209,7 @@ const DoctorGrid = () => {
   };
   useEffect(() => {
     const results = initialDoctors.filter(doctor =>
-      doctor.name.toLowerCase().includes(searchVal.toLowerCase()));
+      doctor.name.toLowerCase().includes(searchVal.trim().toLowerCase()));
       setSearchResults(results);
       setDoctors(results); // tự thêm
   }, [searchVal]);

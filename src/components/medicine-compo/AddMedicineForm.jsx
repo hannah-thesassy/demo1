@@ -67,7 +67,7 @@ const AddMedicineForm = ({ onAddMedicine }) => {
           },
         ]}
       >
-        <InputNumber
+        <Input
           // name="id"
           style={{
             width: '100%',

@@ -6,7 +6,7 @@ import EditMedicineForm from './EditMedicineForm';
 // Khai báo danh sách thuốc
 const initialMedicines = [
   {
-    id: 1,
+    id: '1',
     name: 'Paracetamol',
     type: 'Thuốc hoạt động trên hệ thống thần kinh',
     unitPrice: 5000,
@@ -16,7 +16,7 @@ const initialMedicines = [
     note: 'Không',
   },
   {
-    id: 2,
+    id: '2',
     name: 'Amoxicillin',
     type: 'Thuốc kháng sinh',
     unitPrice: 10000,
@@ -26,7 +26,7 @@ const initialMedicines = [
     note: 'Không',
   },
   {
-    id: 3,
+    id: '3',
     name: 'Aspirin',
     type: 'Thuốc chống viêm',
     unitPrice: 7000,
@@ -36,7 +36,7 @@ const initialMedicines = [
     note: 'Không',
   },
   {
-    id: 4,
+    id: '4',
     name: 'Paracetamol',
     type: 'Thuốc hoạt động trên hệ thống thần kinh',
     unitPrice: 5000,
@@ -46,7 +46,7 @@ const initialMedicines = [
     note: 'Không',
   },
   {
-    id: 5,
+    id: '5',
     name: 'Amoxicillin',
     type: 'Thuốc kháng sinh',
     unitPrice: 10000,
@@ -56,7 +56,7 @@ const initialMedicines = [
     note: 'Không',
   },
   {
-    id: 6,
+    id: '6',
     name: 'Aspirin',
     type: 'Thuốc chống viêm',
     unitPrice: 7000,
@@ -66,7 +66,7 @@ const initialMedicines = [
     note: 'Không',
   },
   {
-    id: 7,
+    id: '7',
     name: 'Paracetamol',
     type: 'Thuốc hoạt động trên hệ thống thần kinh',
     unitPrice: 5000,
@@ -76,7 +76,7 @@ const initialMedicines = [
     note: 'Không',
   },
   {
-    id: 8,
+    id: '8',
     name: 'Amoxicillin',
     type: 'Thuốc kháng sinh',
     unitPrice: 10000,
@@ -86,7 +86,7 @@ const initialMedicines = [
     note: 'Không',
   },
   {
-    id: 9,
+    id: '9',
     name: 'Aspirin',
     type: 'Thuốc chống viêm',
     unitPrice: 7000,
@@ -116,7 +116,7 @@ const MedicineList = () => {
   };
   useEffect(() => {
     const results = initialMedicines.filter(medicine =>
-      medicine.name.toLowerCase().includes(searchVal.toLowerCase()));
+      medicine.name.toLowerCase().includes(searchVal.trim().toLowerCase()));
       setSearchResults(results);
       setMedicines(results); // tự thêm
   }, [searchVal]);

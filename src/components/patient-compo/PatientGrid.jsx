@@ -171,7 +171,7 @@ const PatientGrid = () => {
   };
   useEffect(() => {
     const results = initialPatients.filter(patient =>
-      patient.name.toLowerCase().includes(searchVal.toLowerCase()));
+      patient.name.toLowerCase().includes(searchVal.trim().toLowerCase()));
       setSearchResults(results);
       setPatients(results); // tự thêm
   }, [searchVal]);
