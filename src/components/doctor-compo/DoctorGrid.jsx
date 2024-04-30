@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Button, Modal } from 'antd';
 import axios from 'axios';
 import AddDoctorForm from './AddDoctorForm';
 import EditDoctorForm from './EditDoctorForm';
+import dayjs from 'dayjs';
 
 // BACKEND GET Infor from DB - initialDoctors (danh sach doctor)
 // Dữ liệu danh sách các bác sĩ
@@ -180,6 +182,9 @@ const initialDoctors = [
 
 
 const DoctorGrid = () => {
+  const location = useLocation();
+  const userType = location.state && location.state.userType; // Extract userType from location state
+
   const [searchVal, setSearchVal] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [doctors, setDoctors] = useState(initialDoctors);
@@ -222,7 +227,7 @@ const DoctorGrid = () => {
     const newDoctor = { 
       id: values.id,
       name: values.name,
-      birthday: values.birthday,
+      birthday: values["birthday"].format("YYYY"),
       location: values.location,
       email: values.email,
       phoneNumber: values.phoneNumber,
@@ -329,14 +334,16 @@ const DoctorGrid = () => {
       <div key={doctor.id} className="doctor-card">
         <h2>{doctor.name}</h2>
         <p>Chuyên khoa: {doctor.qualifications}</p>
-        <div>
-          {/* <button onClick={toggleForm}>Xem</button> */}
-          <button className='edit-btn'
-            onClick={() => handleEdit(doctor)}>Sửa</button>
-          {/* <button onClick={handleClick}>Sửa</button> */}
-          <button className='delete-btn'
-            onClick={() => handleDelete(doctor.id)}>Xoá</button>
-        </div>
+        {/* {userType === 'admin' ? ( */}
+          <div>
+            {/* <button onClick={toggleForm}>Xem</button> */}
+            <button className='edit-btn'
+              onClick={() => handleEdit(doctor)}>Sửa</button>
+            {/* <button onClick={handleClick}>Sửa</button> */}
+            <button className='delete-btn'
+              onClick={() => handleDelete(doctor.id)}>Xoá</button>
+          </div>
+        {/* ) : (<div style={{height: "15px"}}></div>)} */}
       </div>
   ));
 

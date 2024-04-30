@@ -182,7 +182,7 @@ const PatientGrid = () => {
     const newPatient = { 
       id: values.id,
       name: values.name,
-      birthday: values.birthday,
+      birthday: values["birthday"].format("YYYY"),
       location: values.location,
       email: values.email,
       phoneNumber: values.phoneNumber,

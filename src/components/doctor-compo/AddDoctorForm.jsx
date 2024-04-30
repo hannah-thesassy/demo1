@@ -97,11 +97,7 @@ const AddDoctorForm = ({ onAddDoctor}) => {
           },
         ]}
       >
-        <InputNumber
-          style={{
-            width: '100%',
-          }}
-        />
+        <DatePicker picker="year" />
       </Form.Item>
 
       <Form.Item
@@ -150,7 +146,10 @@ const AddDoctorForm = ({ onAddDoctor}) => {
           },
         ]}
       >
-        <Input />
+        <Select>
+          <Select.Option value="Nam">Nam</Select.Option>
+          <Select.Option value="Nữ">Nữ</Select.Option>
+        </Select>
       </Form.Item>
       <Form.Item
         label="Số CCCD"
@@ -175,7 +174,14 @@ const AddDoctorForm = ({ onAddDoctor}) => {
           },
         ]}
       >
-        <Input />
+        <Select>
+          <Select.Option value="Ngoại tổng quát">Ngoại tổng quát</Select.Option>
+          <Select.Option value="Nhi khoa">Nhi khoa</Select.Option>
+          <Select.Option value="Y học gia đình">Y học gia đình</Select.Option>
+          <Select.Option value="Sản phụ khoa">Sản phụ khoa</Select.Option>
+          <Select.Option value="Thần kinh học">Thần kinh học</Select.Option>
+          <Select.Option value="Cấp cứu">Cấp cứu</Select.Option>
+        </Select>
       </Form.Item>
       
       <Form.Item
@@ -188,7 +194,18 @@ const AddDoctorForm = ({ onAddDoctor}) => {
           },
         ]}
       >
-        <Input />
+        <Select>
+          <Select.Option value="Hồi sức tích cực">Hồi sức tích cực</Select.Option>
+          <Select.Option value="Gây mê">Gây mê</Select.Option>
+          <Select.Option value="Tâm thần">Tâm thần</Select.Option>
+          <Select.Option value="Sức khoẻ cộng đồng">Sức khoẻ cộng đồng</Select.Option>
+          <Select.Option value="Ngoại thần kinh">Ngoại thần kinh</Select.Option>
+          <Select.Option value="Ngoại tổng quát">Ngoại tổng quát</Select.Option>
+          <Select.Option value="Phổi">Phổi</Select.Option>
+          <Select.Option value="Sơ sinh">Sơ sinh</Select.Option>
+          <Select.Option value="Tim mạch">Tim mạch</Select.Option>
+          <Select.Option value="Tiêu hoá">Tiêu hoá</Select.Option>
+        </Select>
       </Form.Item>
 
       <Form.Item

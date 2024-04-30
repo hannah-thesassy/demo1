@@ -89,6 +89,9 @@ body {
   display: flex;
 }
 
+.read-only-label {
+  color: gray;
+}
 .read-only-field {
   color: gray;
   cursor: not-allowed;

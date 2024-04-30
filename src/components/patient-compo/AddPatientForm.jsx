@@ -97,11 +97,7 @@ const AddPatientForm = ({ onAddPatient}) => {
           },
         ]}
       >
-        <InputNumber
-          style={{
-            width: '100%',
-          }}
-        />
+        <DatePicker picker="year" />
       </Form.Item>
       
       <Form.Item
@@ -150,7 +146,10 @@ const AddPatientForm = ({ onAddPatient}) => {
           },
         ]}
       >
-        <Input />
+        <Select>
+          <Select.Option value="Nam">Nam</Select.Option>
+          <Select.Option value="Nữ">Nữ</Select.Option>
+        </Select>
       </Form.Item>
       <Form.Item
         label="Số CCCD"
@@ -174,7 +173,12 @@ const AddPatientForm = ({ onAddPatient}) => {
           },
         ]}
       >
-        <Input />
+        <Select>
+          <Select.Option value="A">A</Select.Option>
+          <Select.Option value="B">B</Select.Option>
+          <Select.Option value="AB">AB</Select.Option>
+          <Select.Option value="O">O</Select.Option>
+        </Select>
       </Form.Item>
 
   {/* 

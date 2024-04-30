@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Switch, Form, Input, InputNumber, DatePicker } from 'antd';
+import { Button, Switch, Form, Input, InputNumber, DatePicker, Select } from 'antd';
 import dayjs from 'dayjs';
 
 const EditPatientForm = ({ patient, onSave }) => {
@@ -9,7 +9,7 @@ const EditPatientForm = ({ patient, onSave }) => {
   useEffect(() => {
     form.setFieldsValue({
         name: editedPatient.name,
-        birthday: editedPatient.birthday,
+        birthday: dayjs(editedPatient.birthday),
         location: editedPatient.location,
         email: editedPatient.email,
         phoneNumber: editedPatient.phoneNumber,
@@ -29,6 +29,7 @@ const EditPatientForm = ({ patient, onSave }) => {
     const updatedPatient = {
       ...editedPatient,
       ...values,
+      birthday: values.birthday.format('YYYY'),
     //   expiryDate: values.expiryDate.format('YYYY-MM-DD'),
     };
     onSave(updatedPatient);
@@ -37,7 +38,7 @@ const EditPatientForm = ({ patient, onSave }) => {
   return (
     <Form form={form} onFinish={onFinish} >
       <Form.Item
-        label="Họ tên"
+        label={<label className="read-only-label">Họ tên</label>}
         name="name"
         rules={[{ required: true, message: 'Please input the name of the medicine!' }]}
       >
@@ -45,44 +46,48 @@ const EditPatientForm = ({ patient, onSave }) => {
       </Form.Item>
 
       <Form.Item
-        label="Năm sinh"
+        label={<label className="read-only-label">Năm sinh</label>}
         name="birthday"
         rules={[{ required: true, message: 'Please input the price of the medicine!' }]}
       >
-        <InputNumber readOnly className="read-only-field" 
-        style={{ width: '100%' }} />
+        <DatePicker 
+        picker="year" format="YYYY"
+        readOnly className="read-only-field"
+        style={{ width: '100%' }} 
+          
+        />
       </Form.Item>
 
       <Form.Item
-        label="Địa chỉ"
+        label={<label className="read-only-label">Địa chỉ</label>}
         name="location"
         rules={[{ required: true, message: 'Please input the name of the medicine!' }]}
       >
         <Input readOnly className="read-only-field" />
       </Form.Item>
       <Form.Item
-        label="Email"
+        label={<label className="read-only-label">Email</label>}
         name="email"
         rules={[{ required: true, message: 'Please input the name of the medicine!' }]}
       >
         <Input readOnly className="read-only-field" />
       </Form.Item>
       <Form.Item
-        label="SĐT"
+        label={<label className="read-only-label">SĐT</label>}
         name="phoneNumber"
         rules={[{ required: true, message: 'Please input the name of the medicine!' }]}
       >
         <Input readOnly className="read-only-field" />
       </Form.Item>
       <Form.Item
-        label="Giới tính"
+        label={<label className="read-only-label">Giới tính</label>}
         name="sex"
         rules={[{ required: true, message: 'Please input the name of the medicine!' }]}
       >
         <Input readOnly className="read-only-field" />
       </Form.Item>
       <Form.Item
-        label="Số CCCD"
+        label={<label className="read-only-label">Số CCCD</label>}
         name="cccd"
         rules={[{ required: true, message: 'Please input the name of the medicine!' }]}
       >
@@ -93,7 +98,12 @@ const EditPatientForm = ({ patient, onSave }) => {
         name="bloodType"
         rules={[{ required: true, message: 'Please input the name of the medicine!' }]}
       >
-        <Input />
+        <Select>
+          <Select.Option value="A">A</Select.Option>
+          <Select.Option value="B">B</Select.Option>
+          <Select.Option value="AB">AB</Select.Option>
+          <Select.Option value="O">O</Select.Option>
+        </Select>
       </Form.Item>
 
 

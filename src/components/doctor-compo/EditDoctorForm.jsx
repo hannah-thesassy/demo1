@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Switch, Form, Input, InputNumber, DatePicker } from 'antd';
+import { Button, Switch, Form, Input, InputNumber, DatePicker, Select } from 'antd';
 import dayjs from 'dayjs';
 
 const EditDoctorForm = ({ doctor, onSave }) => {
@@ -9,7 +9,7 @@ const EditDoctorForm = ({ doctor, onSave }) => {
   useEffect(() => {
     form.setFieldsValue({
         name: editedDoctor.name,
-        birthday: editedDoctor.birthday,
+        birthday: dayjs(editedDoctor.birthday),
         location: editedDoctor.location,
         email: editedDoctor.email,
         phoneNumber: editedDoctor.phoneNumber,
@@ -32,6 +32,7 @@ const EditDoctorForm = ({ doctor, onSave }) => {
     const updatedDoctor = {
       ...editedDoctor,
       ...values,
+      birthday: values.birthday.format('YYYY'),
     //   expiryDate: values.expiryDate.format('YYYY-MM-DD'),
     };
     onSave(updatedDoctor);
@@ -40,7 +41,7 @@ const EditDoctorForm = ({ doctor, onSave }) => {
   return (
     <Form form={form} onFinish={onFinish} >
       <Form.Item
-        label="Họ tên"
+        label={<label className="read-only-label">Họ tên</label>}
         name="name"
         rules={[{ required: true, message: 'Please input the name of the medicine!' }]}
       >
@@ -53,46 +54,48 @@ const EditDoctorForm = ({ doctor, onSave }) => {
       </Form.Item>
 
       <Form.Item
-        label="Năm sinh"
+        label={<label className="read-only-label">Năm sinh</label>}
         name="birthday"
         rules={[{ required: true, message: 'Please input the price of the medicine!' }]}
       >
-        <InputNumber readOnly className="read-only-field"
+        <DatePicker 
+        picker="year" format="YYYY"
+        readOnly className="read-only-field"
         style={{ width: '100%' }} 
           
         />
       </Form.Item>
 
       <Form.Item
-        label="Địa chỉ"
+        label={<label className="read-only-label">Địa chỉ</label>}
         name="location"
         rules={[{ required: true, message: 'Please input the name of the medicine!' }]}
       >
         <Input readOnly className="read-only-field" />
       </Form.Item>
       <Form.Item
-        label="Email"
+        label={<label className="read-only-label">Email</label>}
         name="email"
         rules={[{ required: true, message: 'Please input the name of the medicine!' }]}
       >
         <Input readOnly className="read-only-field" />
       </Form.Item>
       <Form.Item
-        label="SĐT"
+        label={<label className="read-only-label">SĐT</label>}
         name="phoneNumber"
         rules={[{ required: true, message: 'Please input the name of the medicine!' }]}
       >
         <Input readOnly className="read-only-field" />
       </Form.Item>
       <Form.Item
-        label="Giới tính"
+        label={<label className="read-only-label">Giới tính</label>}
         name="sex"
         rules={[{ required: true, message: 'Please input the name of the medicine!' }]}
       >
         <Input readOnly className="read-only-field" />
       </Form.Item>
       <Form.Item
-        label="Số CCCD"
+        label={<label className="read-only-label">Số CCCD</label>}
         name="cccd"
         rules={[{ required: true, message: 'Please input the name of the medicine!' }]}
       >
@@ -104,7 +107,14 @@ const EditDoctorForm = ({ doctor, onSave }) => {
         name="department"
         rules={[{ required: true, message: 'Please input the type of the medicine!' }]}
       >
-        <Input />
+        <Select>
+          <Select.Option value="Ngoại tổng quát">Ngoại tổng quát</Select.Option>
+          <Select.Option value="Nhi khoa">Nhi khoa</Select.Option>
+          <Select.Option value="Y học gia đình">Y học gia đình</Select.Option>
+          <Select.Option value="Sản phụ khoa">Sản phụ khoa</Select.Option>
+          <Select.Option value="Thần kinh học">Thần kinh học</Select.Option>
+          <Select.Option value="Cấp cứu">Cấp cứu</Select.Option>
+        </Select>
       </Form.Item>
 
       <Form.Item
@@ -112,7 +122,18 @@ const EditDoctorForm = ({ doctor, onSave }) => {
         name="qualifications"
         rules={[{ required: true, message: 'Please input the type of the medicine!' }]}
       >
-        <Input />
+        <Select>
+          <Select.Option value="Hồi sức tích cực">Hồi sức tích cực</Select.Option>
+          <Select.Option value="Gây mê">Gây mê</Select.Option>
+          <Select.Option value="Tâm thần">Tâm thần</Select.Option>
+          <Select.Option value="Sức khoẻ cộng đồng">Sức khoẻ cộng đồng</Select.Option>
+          <Select.Option value="Ngoại thần kinh">Ngoại thần kinh</Select.Option>
+          <Select.Option value="Ngoại tổng quát">Ngoại tổng quát</Select.Option>
+          <Select.Option value="Phổi">Phổi</Select.Option>
+          <Select.Option value="Sơ sinh">Sơ sinh</Select.Option>
+          <Select.Option value="Tim mạch">Tim mạch</Select.Option>
+          <Select.Option value="Tiêu hoá">Tiêu hoá</Select.Option>
+        </Select>
       </Form.Item>
 
       <Form.Item

@@ -6,6 +6,12 @@ const Login = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ username: '', password: '' });
 
+  const users = [
+    { username: 'admin', password: 'admin', type: 'admin' },
+    { username: 'user1', password: 'password1', type: 'user' },
+    // Add more users as needed
+  ];
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -14,9 +20,10 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Thực hiện kiểm tra thông tin đăng nhập, ví dụ: tạm thời kiểm tra username và password là "admin"
-    if (formData.username === 'admin' && formData.password === 'admin') {
+    const foundUser = users.find(user => user.username === formData.username && user.password === formData.password);
+    if (foundUser) {
       // Đăng nhập thành công, chuyển hướng đến trang dashboard
-      navigate("/hospital-manage/dashboard");
+      navigate('/hospital-manage/dashboard', { state: { userType: foundUser.type } });
     } else {
       // Đăng nhập không thành công, xử lý tại đây (ví dụ: hiển thị thông báo lỗi)
       alert('Bạn nhập sai Tài khoản hoặc Mật khẩu');
