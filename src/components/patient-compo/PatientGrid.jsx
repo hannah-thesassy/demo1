@@ -286,10 +286,10 @@ const PatientGrid = () => {
           <div>
             {/* <button onClick={toggleForm}>Xem</button> */}
             <button className='edit-btn'
-              onClick={() => handleEdit(doctor)}>Sửa</button>
+              onClick={() => handleEdit(patient)}>Sửa</button>
             {/* <button onClick={handleClick}>Sửa</button> */}
             <button className='delete-btn'
-              onClick={() => handleDelete(doctor.id)}>Xoá</button>
+              onClick={() => handleDelete(patient.id)}>Xoá</button>
           </div>
         ) : (<div style={{height: "15px"}}></div>)}
       </div>
