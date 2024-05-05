@@ -173,6 +173,11 @@ body {
   display: none;
 }
 
+.logout-btn {
+  position: absolute;
+  right: 50px;
+}
+
 /* End Header  */
 
 /* Sidebar  */

@@ -144,6 +144,8 @@ const initialPatients = [
 
 
 const PatientGrid = () => {
+  const userType = localStorage.getItem('userType');
+
   const [searchVal, setSearchVal] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [patients, setPatients] = useState(initialPatients);
@@ -280,13 +282,16 @@ const PatientGrid = () => {
       <div key={patient.id} className="doctor-card">
         <h2>{patient.name}</h2>
         <p>Năm sinh: {patient.birthday}, Nhóm máu: {patient.bloodType}</p>
-        <div>
-          <button className='edit-btn'
-            onClick={() => handleEdit(patient)}>Sửa</button>
-          {/* <button onClick={handleClick}>Sửa</button> */}
-          <button className='delete-btn'
-            onClick={() => handleDelete(patient.id)}>Xoá</button>
-        </div>
+        {userType === 'admin' ? (
+          <div>
+            {/* <button onClick={toggleForm}>Xem</button> */}
+            <button className='edit-btn'
+              onClick={() => handleEdit(doctor)}>Sửa</button>
+            {/* <button onClick={handleClick}>Sửa</button> */}
+            <button className='delete-btn'
+              onClick={() => handleDelete(doctor.id)}>Xoá</button>
+          </div>
+        ) : (<div style={{height: "15px"}}></div>)}
       </div>
   ));
 
@@ -315,10 +320,11 @@ const PatientGrid = () => {
                 // onChange={handleSearch}
                 />
             </div>
+            {userType === 'admin' ? (
             <Button className="add-button" type="primary" 
               onClick={showModal}>
               Thêm bệnh nhân
-            </Button>
+            </Button>) : (<div></div>)}
             {/* <button 
               onClick={handleClick}>Thêm bác sĩ</button> */}
             <Modal

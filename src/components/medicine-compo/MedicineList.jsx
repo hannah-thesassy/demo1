@@ -100,6 +100,8 @@ const initialMedicines = [
 
 // function MedicineList({ medicines, onEdit, onDelete }) {
 const MedicineList = () => {
+  const userType = localStorage.getItem('userType');
+
   const [searchVal, setSearchVal] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [medicines, setMedicines] = useState(initialMedicines);
@@ -232,11 +234,15 @@ const MedicineList = () => {
       <td>{medicine.supplier}</td>
       <td>{medicine.note}</td>
       <td>
-        <button className='edit-btn'
-          onClick={() => handleEdit(medicine)}>Sửa</button>
-        {/* <button onClick={handleClick}>Sửa</button> */}
-        <button className='delete-btn'
-          onClick={() => handleDelete(medicine.id)}>Xoá</button>
+      {userType === 'admin' ? (
+          <div>
+            <button className='edit-btn'
+              onClick={() => handleEdit(medicine)}>Sửa</button>
+            {/* <button onClick={handleClick}>Sửa</button> */}
+            <button className='delete-btn'
+              onClick={() => handleDelete(medicine.id)}>Xoá</button>
+          </div>
+        ) : (<div style={{height: "15px"}}></div>)}
       </td>
     </tr>
   ));
@@ -260,10 +266,11 @@ const MedicineList = () => {
             // onChange={e => { setSearchVal(e.target.value); handleSearchClick(); }}
           />
         </div>
-        <Button className="add-button" type="primary" 
-          onClick={showModal}>
-          Thêm thuốc
-        </Button>
+        {userType === 'admin' ? (
+          <Button className="add-button" type="primary" 
+            onClick={showModal}>
+            Thêm thuốc
+          </Button>) : (<div></div>)}
         <Modal
           title="Thêm Thuốc mới"
           visible={visible}
@@ -298,7 +305,7 @@ const MedicineList = () => {
           <tr>
             <th>Tên</th>
             <th>Loại</th>
-            <th>Giá</th>
+            <th>Đơn giá</th>
             <th>Số lượng</th>
             <th>Ngày hết hạn</th>
             <th>Nhà cung cấp</th>

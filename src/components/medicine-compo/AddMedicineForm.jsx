@@ -107,7 +107,7 @@ const AddMedicineForm = ({ onAddMedicine }) => {
       </Form.Item>
 
       <Form.Item
-        label="Giá"
+        label="Đơn giá"
         name={"unitPrice"}
         rules={[
           {

@@ -8,7 +8,7 @@ const Login = () => {
 
   const users = [
     { username: 'admin', password: 'admin', type: 'admin' },
-    { username: 'user1', password: 'password1', type: 'user' },
+    { username: 'user', password: 'user', type: 'user' },
     // Add more users as needed
   ];
 
@@ -22,8 +22,11 @@ const Login = () => {
     // Thực hiện kiểm tra thông tin đăng nhập, ví dụ: tạm thời kiểm tra username và password là "admin"
     const foundUser = users.find(user => user.username === formData.username && user.password === formData.password);
     if (foundUser) {
+      localStorage.setItem('userType', foundUser.type);
       // Đăng nhập thành công, chuyển hướng đến trang dashboard
-      navigate('/hospital-manage/dashboard', { state: { userType: foundUser.type } });
+      navigate('/hospital-manage/dashboard'
+      // , { state: { userType: foundUser.type } }
+    );
     } else {
       // Đăng nhập không thành công, xử lý tại đây (ví dụ: hiển thị thông báo lỗi)
       alert('Bạn nhập sai Tài khoản hoặc Mật khẩu');

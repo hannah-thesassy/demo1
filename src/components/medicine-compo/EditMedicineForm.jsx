@@ -47,7 +47,7 @@ const EditMedicineForm = ({ medicine, onSave }) => {
         <Input />
       </Form.Item>
       <Form.Item
-        label="Giá"
+        label="Đơn giá"
         name="unitPrice"
         rules={[{ required: true, message: 'Please input the unitPrice of the medicine!' }]}
       >

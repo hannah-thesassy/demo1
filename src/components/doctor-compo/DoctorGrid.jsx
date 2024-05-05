@@ -182,8 +182,9 @@ const initialDoctors = [
 
 
 const DoctorGrid = () => {
-  const location = useLocation();
-  const userType = location.state && location.state.userType; // Extract userType from location state
+  const userType = localStorage.getItem('userType');
+  // const location = useLocation();
+  // const userType = location.state && location.state.userType; // Extract userType from location state
 
   const [searchVal, setSearchVal] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -334,7 +335,7 @@ const DoctorGrid = () => {
       <div key={doctor.id} className="doctor-card">
         <h2>{doctor.name}</h2>
         <p>Chuyên khoa: {doctor.qualifications}</p>
-        {/* {userType === 'admin' ? ( */}
+        {userType === 'admin' ? (
           <div>
             {/* <button onClick={toggleForm}>Xem</button> */}
             <button className='edit-btn'
@@ -343,7 +344,7 @@ const DoctorGrid = () => {
             <button className='delete-btn'
               onClick={() => handleDelete(doctor.id)}>Xoá</button>
           </div>
-        {/* ) : (<div style={{height: "15px"}}></div>)} */}
+        ) : (<div style={{height: "15px"}}></div>)}
       </div>
   ));
 
@@ -372,10 +373,11 @@ const DoctorGrid = () => {
                 // onChange={handleSearch}
                 />
             </div>
+            {userType === 'admin' ? (
             <Button className="add-button" type="primary" 
               onClick={showModal}>
               Thêm bác sĩ
-            </Button>
+            </Button>) : (<div></div>)}
             {/* <button 
               onClick={handleClick}>Thêm bác sĩ</button> */}
             <Modal
