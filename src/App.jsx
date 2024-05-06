@@ -20,7 +20,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/hospital-manage/login" index element={<Login isLogged={isAuthenticated} />} />
+        <Route path="/hospital-manage/login" index element={<Login isLoggedIn={isAuthenticated} />} />
         {/* <Navigate to="/hospital-manage/login" /> */}
         <Route path="/hospital-manage" element={<Navigate to="/hospital-manage/login" />} />
       {isAuthenticated ? (
